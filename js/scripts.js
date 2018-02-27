@@ -15,18 +15,48 @@ $(function () {
     });
 
     //blur  event handler
-    $(searchField).on('blue',function () {
-        if(searchField.val() === ''){
+    $(searchField).on('blue', function () {
+        if (searchField.val() === '') {
             $(searchField).animate({
-                width:'45%'
+                width: '45%'
 
-            },400,function (){});
+            }, 400, function () {
+            });
             $(icon).animate({
-                right:'360px'
+                right: '360px'
 
-            },400,function (){});
-
+            }, 400, function () {
+            });
         }
-    })
 
+    })
+    $('#search-form').submit(function (e) {
+        e.preventDefault();
+    });
 });
+
+function search() {
+    //clear result
+    $('#result').html('');
+    $('#buttons').html('');
+
+    //get form input
+    q = $('#query').val();
+    //run get request on api
+    $.get(
+        "https://www.googleapis.com/youtube/v3/search", {
+            part: 'snippet, id',
+            q: q,
+            type: 'video',
+            key: 'AIzaSyDu3ULXjhGO0V-cEk5nmwrZWw1VrHp2IlA'
+        },
+        function (data) {
+            var nextPageToken = data.nextPageToken;
+            var prevtPageToken = data.prevtPageToken;
+
+            console.log(data);
+        }
+    );
+
+}
+
