@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>youtube</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/scripts.js"></script>
+</head>
+
+<body>
+<div id="container">
+    <header>
+        <h1>Search <span>vidz</span></h1>
+        <p>search all youtube videos</p>
+    </header>
+
+    <section>
+        <form id="search-form" name="search-form" onsubmit="return search()">
+            <div class="fieldcontainer">
+                <input type="search" id="query" class="search-field" placeholder="Search Youtube...">
+                <input type="submit" name="search-btn" id="search-btn" value="">
+            </div>
+
+        </form>
+
+        <ul id="result"></ul>
+        <div id="buttons"></div>
+
+    </section>
+
+    <footer>
+        <p>@coppy right is coppy left :)</p>
+    </footer>
+
+</div>
+
+
+</body>
+</html>
