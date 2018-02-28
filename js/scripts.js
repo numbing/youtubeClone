@@ -55,8 +55,41 @@ function search() {
             var prevtPageToken = data.prevtPageToken;
 
             console.log(data);
+
+            $.each(data.items, function (i, item) {
+                //get output
+                var output = getOutput(item);
+
+                //display the result
+                $('#result').append(output);
+            });
         }
     );
 
+}
+
+function getOutput(item) {
+    var videoId = item.id.videoId;
+    var title = item.snippet.title;
+    var description = item.snippet.description;
+    var thumb = item.snippet.thumbnails.high.url;
+    var channelTitle = item.snippet.channelTitle;
+    var videoDate = item.snippet.publishedAt;
+
+    //buildin output string
+    var output = '<li>' +
+        '<div class="list-left">' +
+        '<img src="' +thumb+'">'+
+        '</div>' +
+        '<div class="list-right">' +
+        '<h3>' + title + '</h3>' +
+        '<small> By <span class="cTitle">' + channelTitle + '</span>on' + videoDate + '</small>' +
+        '<p>' + description + '</p>' +
+        '</div>' +
+        '</li>' +
+        '<div class="clearfix"></div> ' +
+        '';
+
+    return output;
 }
 
