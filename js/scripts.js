@@ -63,6 +63,9 @@ function search() {
                 //display the result
                 $('#result').append(output);
             });
+            var buttons = getButtons(prevtPageToken, nextPageToken);
+            //display buttons
+            $('#buttons').append(buttons);
         }
     );
 
@@ -79,7 +82,7 @@ function getOutput(item) {
     //buildin output string
     var output = '<li>' +
         '<div class="list-left">' +
-        '<img src="' +thumb+'">'+
+        '<img src="' + thumb + '">' +
         '</div>' +
         '<div class="list-right">' +
         '<h3>' + title + '</h3>' +
@@ -91,5 +94,23 @@ function getOutput(item) {
         '';
 
     return output;
+}
+
+function getButtons(prevtPageToken, nextPageToken) {
+    if (!prevtPageToken) {
+        var btnoutput = '<div class="button-container">' +
+            '<button id="next-button" class="paging-button" data-token="' + nextPageToken + '" data-query="' + q + '"' +
+            'onclick="nextPage();">Next page</button></div>';
+
+
+    } else {
+        var btnoutput = '<div class="button-container">' +
+            '<button id="next-button" class="paging-button" data-token="' + prevPageToken + '" data-query="' + q + '"' +
+            'onclick="prevtPage();">prev page</button>' +
+            '<button id="next-button" class="paging-button" data-token="' + nextPageToken + '" data-query="' + q + '"' +
+            'onclick="nextPage();">Next page</button></div>';
+
+    }
+    return btnoutput;
 }
 
